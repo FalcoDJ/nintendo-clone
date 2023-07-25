@@ -56,6 +56,12 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
         {children}
+        <footer>
+          <p>
+            Design recreation by Isaac Miller, 2023. Based on&nbsp;
+            <a href="https://www.nintendo.com">nintendo.com</a>
+          </p>
+        </footer>
       </body>
     </html>
   );

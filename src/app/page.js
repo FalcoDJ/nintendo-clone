@@ -1,5 +1,8 @@
 import { createClient } from "contentful";
-import Image from "next/image";
+import {
+  ScrollButtonRight,
+  ScrollButtonLeft,
+} from "@/components/ScrollButtons";
 
 const client = createClient({
   space: process.env.CONTENT_SPACE_ID,
@@ -74,32 +77,36 @@ export default async function Landing() {
                   {elements.featured.ctaButton}
                 </a>
               </span>
-              <div className="game-list">
-                {elements.freshGames && (
-                  <>
-                    {Object.keys(elements.freshGames).map((key) => {
-                      const card = elements.freshGames[key];
-                      return (
-                        <>
-                          <a href="#" className="game-card">
-                            <div className="game-card-img-wrapper">
-                              <img
-                                src={"https:" + card.thumbnail.file.url}
-                                alt={card.titleSlug}
-                              />
-                            </div>
-                            <div className="game-card-info">
-                              <h3>{card.title}</h3>
-                              <span className="platform">
-                                <p>{card.platform}</p>
-                              </span>
-                            </div>
-                          </a>
-                        </>
-                      );
-                    })}
-                  </>
-                )}
+              <div className="scroll-container">
+                <div className="game-list">
+                  <ScrollButtonLeft />
+                  <ScrollButtonRight />
+                  {elements.freshGames && (
+                    <>
+                      {Object.keys(elements.freshGames).map((key) => {
+                        const card = elements.freshGames[key];
+                        return (
+                          <>
+                            <a href="#" className="game-card">
+                              <div className="game-card-img-wrapper">
+                                <img
+                                  src={"https:" + card.thumbnail.file.url}
+                                  alt={card.titleSlug}
+                                />
+                              </div>
+                              <div className="game-card-info">
+                                <h3>{card.title}</h3>
+                                <span className="platform">
+                                  <p>{card.platform}</p>
+                                </span>
+                              </div>
+                            </a>
+                          </>
+                        );
+                      })}
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </section>
@@ -130,7 +137,7 @@ export default async function Landing() {
                           />
                         </div>
                       </a>
-                      <h1>{character.name}</h1>
+                      <h3>{character.name}</h3>
                     </div>
                   );
                 })}

@@ -12,7 +12,7 @@ html {
 }
 
 * {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
@@ -41,6 +41,13 @@ h3 {
   font-size: 2rem;
 }
 
+footer {
+  padding: 2em;
+  background-color: black;
+  color: white;
+  font-size: 1.8rem;
+}
+
 header {
   z-index: 100;
   position: fixed;
@@ -67,7 +74,6 @@ header .logo-btn {
   background-color: var(--nintendo-red);
   color: white;
   width: 6em;
-  padding: 0.2em;
 }
 
 nav ul {
@@ -99,7 +105,7 @@ main {
 
 section {
   border-bottom: 1px solid var(--shadow-gray);
-  padding: 3em 2em;
+  padding: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,6 +116,7 @@ section img {
 }
 
 .section-content {
+  position: relative;
   width: 1200px;
   max-width: 100%;
 }
@@ -146,7 +153,7 @@ section img {
 }
 
 .section-content span {
-  margin: 1em 0;
+  margin: 2em 0;
 }
 
 .cta-btn {
@@ -168,7 +175,20 @@ section img {
   justify-content: left;
   overflow-x: scroll;
   overflow-y: visible;
-  /* position: absolute; */
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.game-list::before {
+  content: "";
+  width: 2em;
+  flex-shrink: 0;
+}
+
+.game-list::after {
+  content: "";
+  width: 2em;
+  flex-shrink: 0;
 }
 
 .game-card {
@@ -189,6 +209,7 @@ section img {
   height: 6em;
   display: flex;
   flex-direction: column;
+  box-sizing: content-box;
 }
 
 .game-card-info h3 {
@@ -203,12 +224,12 @@ section img {
 
 .game-card,
 .game-card * {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in;
 }
 
 .game-card:hover {
   margin-top: 0;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 .game-card:hover h3 {
@@ -217,6 +238,10 @@ section img {
 
 .game-card:hover .game-card-img-wrapper {
   margin-bottom: 1em;
+}
+
+.platform {
+  z-index: -1;
 }
 
 .platform p {
@@ -235,4 +260,145 @@ section img {
 
 .game-card:first-child {
   margin-left: 0;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2em;
+}
+
+.character-card {
+  width: 100%;
+  /* z-index: -1; */
+}
+
+.character-card .image-wrapper {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.4em;
+  margin-bottom: 1em;
+}
+
+.character-card,
+.character-card * {
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.character-card:hover .character-bg {
+  transform: scale(100%);
+}
+
+.character-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  z-index: -1;
+  transform: scale(115%);
+}
+
+.character-card:hover .character-mug {
+  transform: scale(115%);
+}
+
+.character-mug {
+  z-index: -1;
+  transform: scale(100%);
+}
+
+.scroll-btn-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.142);
+  color: white;
+}
+
+.scroll-btn-box,
+.scroll-btn-box * {
+  transition: all 0.2s ease-out 0s;
+}
+
+.scroll-btn-box:hover {
+  background-color: rgba(0, 0, 0, 0.441);
+}
+
+.scroll-btn-box:hover svg {
+  stroke-width: 0.4rem;
+}
+
+.right {
+  right: 0;
+  border-radius: 0.4em 0 0 0.4em;
+}
+
+.left {
+  left: 0;
+  border-radius: 0 0.4em 0.4em 0;
+}
+
+.scroll-container {
+  position: relative;
+}
+
+@media screen and (max-width: 800px) {
+  .hero-content span,
+  .section-content span {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-bg {
+    height: calc(100% - 3.5em);
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .scroll-container {
+    overflow: scroll;
+    overflow-x: scroll;
+    max-width: 100%;
+  }
+
+  .scroll-btn-box {
+    display: none;
+  }
+
+  .game-list {
+    overflow: auto;
+  }
+
+  .game-list::before,
+  .game-list::after {
+    display: none;
+  }
+
+  .character-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    justify-content: center;
+    background-color: var(--nintendo-red);
+  }
+
+  header nav {
+    display: none;
+  }
 }
