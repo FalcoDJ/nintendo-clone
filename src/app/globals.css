@@ -177,6 +177,7 @@ section img {
   overflow-y: visible;
   overflow: hidden;
   scroll-behavior: smooth;
+  gap: 2em;
 }
 
 .game-list::before {
@@ -193,7 +194,7 @@ section img {
 
 .game-card {
   width: calc(1200px / 4);
-  margin: 1em;
+  margin: 1em 0;
   flex-shrink: 0;
   border-radius: 0.4em;
   overflow: hidden;
@@ -370,8 +371,7 @@ section img {
 
 @media screen and (max-width: 480px) {
   .scroll-container {
-    overflow: scroll;
-    overflow-x: scroll;
+    display: contents;
     max-width: 100%;
   }
 
@@ -380,7 +380,7 @@ section img {
   }
 
   .game-list {
-    overflow: auto;
+    overflow-x: scroll;
   }
 
   .game-list::before,
